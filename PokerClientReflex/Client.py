@@ -58,7 +58,6 @@ def queryPlayerName(_name):
 '''
 def queryOpenAction(_minimumPotAfterOpen, _playersCurrentBet, _playersRemainingChips):
     print("Player requested to choose an opening action.")
-    print("queryOpen", CURRENT_HAND)
 
     type_of_hand = identify_hand(CURRENT_HAND)
     
@@ -78,22 +77,6 @@ def queryOpenAction(_minimumPotAfterOpen, _playersCurrentBet, _playersRemainingC
                 return ClientBase.BettingAnswer.ACTION_OPEN, (random.randint(0, amount_that_can_be_bet) + _minimumPotAfterOpen)
     
     return ClientBase.BettingAnswer.ACTION_CHECK
-
-    
-
-    # Depending on chips & cards, decide to open or check
-    def chooseOpenOrCheck():
-        if _playersCurrentBet + _playersRemainingChips > _minimumPotAfterOpen:
-
-            #return ClientBase.BettingAnswer.ACTION_OPEN,  iOpenBet
-            return ClientBase.BettingAnswer.ACTION_OPEN,  (random.randint(0, 10) + _minimumPotAfterOpen) if _playersCurrentBet + _playersRemainingChips + 10> _minimumPotAfterOpen else _minimumPotAfterOpen
-        else:
-            return ClientBase.BettingAnswer.ACTION_CHECK
-
-    return {
-        0: ClientBase.BettingAnswer.ACTION_CHECK,
-        1: ClientBase.BettingAnswer.ACTION_CHECK,
-    }.get(random.randint(0, 2), chooseOpenOrCheck())
 
 '''
 * Modify queryCallRaiseAction() and add your strategy here
@@ -235,8 +218,8 @@ def identify_hand(hand):
 * @see     #infoCardsInHand(ca.ualberta.cs.poker.Hand)
 '''
 
-def cards_to_keep_random(hand_remove_cards_to_keep, cards_to_keep):
-    random_count_to_keep = random.randint(0, len(hand_remove_cards_to_keep))
+def cards_to_keep_random(hand_remove_cards_to_keep, cards_to_keep, at_least=1):
+    random_count_to_keep = random.randint(at_least, len(hand_remove_cards_to_keep))
     for _ in range(random_count_to_keep):
         cards_to_keep.append(hand_remove_cards_to_keep[random.randint(0, len(hand_remove_cards_to_keep)-1)])
         hand_remove_cards_to_keep = [card for card in hand_remove_cards_to_keep if card not in cards_to_keep]
@@ -269,7 +252,7 @@ def queryCardsToThrow(_hand):
             cards_to_keep = [card for card in _hand if card_value(card[0]) == value_ranks[4]]
 
         hand_remove_cards_to_keep = [card for card in _hand if card not in cards_to_keep]
-        cards_to_keep = cards_to_keep_random(hand_remove_cards_to_keep, cards_to_keep)
+        cards_to_keep = cards_to_keep_random(hand_remove_cards_to_keep, cards_to_keep, at_least=1)
 
     elif type_of_hand == TypeOfHand.TWO_PAIR:
         if (value_ranks.count(value_ranks[0]) == 2 and value_ranks.count(value_ranks[2]) == 2):
@@ -278,6 +261,10 @@ def queryCardsToThrow(_hand):
             cards_to_keep = [card for card in _hand if card_value(card[0]) == value_ranks[0] or card_value(card[0]) == value_ranks[4]]
         elif (value_ranks.count(value_ranks[2]) == 2 and value_ranks.count(value_ranks[4]) == 2):
             cards_to_keep = [card for card in _hand if card_value(card[0]) == value_ranks[2] or card_value(card[0]) == value_ranks[4]]
+        
+        hand_remove_cards_to_keep = [card for card in _hand if card not in cards_to_keep]
+        cards_to_keep = cards_to_keep_random(hand_remove_cards_to_keep, cards_to_keep, at_least=0)
+
     elif type_of_hand == TypeOfHand.THREE_OF_A_KIND:
         if value_ranks.count(value_ranks[0]) == 3:
             cards_to_keep = [card for card in _hand if card_value(card[0]) == value_ranks[0]]
@@ -290,12 +277,14 @@ def queryCardsToThrow(_hand):
             cards_to_keep = [card for card in _hand if card_value(card[0]) == value_ranks[0]]
         elif value_ranks.count(value_ranks[1]) == 4:
             cards_to_keep = [card for card in _hand if card_value(card[0]) == value_ranks[1]]
+        hand_remove_cards_to_keep = [card for card in _hand if card not in cards_to_keep]
+        cards_to_keep = cards_to_keep_random(hand_remove_cards_to_keep, cards_to_keep, at_least=0)
     elif type_of_hand == TypeOfHand.HIGH_CARD:
         # Keep the highest card
         highest_value = max(value_ranks)
         cards_to_keep = [card for card in _hand if card_value(card[0]) == highest_value]
         hand_remove_cards_to_keep = [card for card in _hand if card not in cards_to_keep]
-        cards_to_keep = cards_to_keep_random(hand_remove_cards_to_keep, cards_to_keep)
+        cards_to_keep = cards_to_keep_random(hand_remove_cards_to_keep, cards_to_keep, at_least=2)
         
 
 

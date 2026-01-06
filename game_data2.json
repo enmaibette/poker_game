@@ -1,0 +1,454 @@
+{
+    "players": [
+        "ReflexAgent",
+        "The_French_Flair",
+        "Random"
+    ],
+    "player_rounds": {
+        "ReflexAgent": {
+            "1": {
+                "actions": [
+                    "Check",
+                    "Check",
+                    "Fold"
+                ],
+                "bid": 10,
+                "card_replaced": 0,
+                "won": false
+            },
+            "2": {
+                "actions": [
+                    "Check",
+                    "Check",
+                    "Draw",
+                    "Check",
+                    "Check"
+                ],
+                "bid": 20,
+                "card_replaced": 0,
+                "won": false
+            },
+            "3": {
+                "actions": [
+                    "Check",
+                    "Check",
+                    "Draw",
+                    "Check",
+                    "Check",
+                    "Fold"
+                ],
+                "bid": 30,
+                "card_replaced": 0,
+                "won": false
+            },
+            "4": {
+                "actions": [
+                    "Check",
+                    "Check",
+                    "Draw",
+                    [
+                        "Open",
+                        35
+                    ],
+                    "Open"
+                ],
+                "bid": 75,
+                "card_replaced": 0,
+                "won": false
+            },
+            "5": {
+                "actions": [
+                    "Call",
+                    "Draw",
+                    "Fold"
+                ],
+                "bid": 50,
+                "card_replaced": 1,
+                "won": false
+            },
+            "6": {
+                "actions": [
+                    "Fold",
+                    "Draw"
+                ],
+                "bid": 60,
+                "card_replaced": 2,
+                "won": false
+            },
+            "7": {
+                "actions": [
+                    "Check",
+                    "Check",
+                    "Draw",
+                    "Check",
+                    "Check"
+                ],
+                "bid": 70,
+                "card_replaced": 2,
+                "won": false
+            },
+            "8": {
+                "actions": [
+                    "Check",
+                    "Check",
+                    "Draw",
+                    "Check",
+                    "Check"
+                ],
+                "bid": 80,
+                "card_replaced": 0,
+                "won": false
+            },
+            "9": {
+                "actions": [
+                    "Check",
+                    "Check",
+                    "Draw",
+                    [
+                        "Open",
+                        28
+                    ],
+                    "Open"
+                ],
+                "bid": 118,
+                "card_replaced": 1,
+                "won": true
+            },
+            "10": {
+                "actions": [
+                    "Check",
+                    "Check",
+                    "Call",
+                    "Draw",
+                    [
+                        "Open",
+                        78
+                    ],
+                    "Open"
+                ],
+                "bid": 178,
+                "card_replaced": 1,
+                "won": false
+            },
+            "11": {
+                "actions": [
+                    "Check",
+                    "Check",
+                    "Draw",
+                    "Fold"
+                ],
+                "bid": 120,
+                "card_replaced": 1,
+                "won": false
+            },
+            "12": {
+                "actions": [
+                    "Check",
+                    "Check",
+                    "Draw",
+                    "Check",
+                    "Check"
+                ],
+                "bid": 140,
+                "card_replaced": 3,
+                "won": true
+            },
+            "13": {
+                "actions": [
+                    "Fold"
+                ],
+                "bid": 160,
+                "card_replaced": 0,
+                "won": false
+            },
+            "14": {
+                "actions": [
+                    [
+                        "Open",
+                        21
+                    ],
+                    "Open",
+                    "Draw",
+                    "Check",
+                    "Check",
+                    "Fold",
+                    "All-in",
+                    "Draw"
+                ],
+                "bid": 201,
+                "card_replaced": 2,
+                "won": false
+            }
+        },
+        "The_French_Flair": {
+            "1": {
+                "actions": [
+                    "Open"
+                ],
+                "bid": 50,
+                "card_replaced": 0,
+                "won": true
+            },
+            "2": {
+                "actions": [
+                    "Check",
+                    "Draw",
+                    "Check"
+                ],
+                "bid": 0,
+                "card_replaced": 3,
+                "won": false
+            },
+            "3": {
+                "actions": [
+                    "Check",
+                    "Draw",
+                    "Open"
+                ],
+                "bid": 41,
+                "card_replaced": 3,
+                "won": true
+            },
+            "4": {
+                "actions": [
+                    "Check",
+                    "Draw",
+                    "Call"
+                ],
+                "bid": 20,
+                "card_replaced": 4,
+                "won": true
+            },
+            "5": {
+                "actions": [
+                    "Check",
+                    "Call",
+                    "Draw",
+                    "Open",
+                    "Call"
+                ],
+                "bid": 45,
+                "card_replaced": 4,
+                "won": true
+            },
+            "6": {
+                "actions": [
+                    "Call",
+                    "Draw",
+                    "Open"
+                ],
+                "bid": 69,
+                "card_replaced": 1,
+                "won": true
+            },
+            "7": {
+                "actions": [
+                    "Check",
+                    "Draw",
+                    "Check"
+                ],
+                "bid": 20,
+                "card_replaced": 3,
+                "won": true
+            },
+            "8": {
+                "actions": [
+                    "Check",
+                    "Draw",
+                    "Check"
+                ],
+                "bid": 0,
+                "card_replaced": 3,
+                "won": true
+            },
+            "9": {
+                "actions": [
+                    "Check",
+                    "Draw",
+                    "Call"
+                ],
+                "bid": 10,
+                "card_replaced": 3,
+                "won": false
+            },
+            "10": {
+                "actions": [
+                    "Open",
+                    "Draw",
+                    "Call"
+                ],
+                "bid": 94,
+                "card_replaced": 3,
+                "won": true
+            },
+            "11": {
+                "actions": [
+                    "Check",
+                    "Draw",
+                    "Open"
+                ],
+                "bid": 78,
+                "card_replaced": 3,
+                "won": true
+            },
+            "12": {
+                "actions": [
+                    "Check",
+                    "Draw",
+                    "Check"
+                ],
+                "bid": 40,
+                "card_replaced": 3,
+                "won": true
+            },
+            "13": {
+                "actions": [
+                    "Open"
+                ],
+                "bid": 82,
+                "card_replaced": 0,
+                "won": true
+            },
+            "14": {
+                "actions": [
+                    "Call",
+                    "Draw",
+                    "Open",
+                    "Draw"
+                ],
+                "bid": 125,
+                "card_replaced": 3,
+                "won": true
+            }
+        },
+        "Random": {
+            "1": {
+                "actions": [
+                    "Fold"
+                ],
+                "bid": 20,
+                "card_replaced": 0,
+                "won": false
+            },
+            "2": {
+                "actions": [
+                    "Check",
+                    "Draw",
+                    "Check"
+                ],
+                "bid": 10,
+                "card_replaced": 1,
+                "won": true
+            },
+            "3": {
+                "actions": [
+                    "Check",
+                    "Draw",
+                    "Check",
+                    "Fold"
+                ],
+                "bid": 0,
+                "card_replaced": 1,
+                "won": false
+            },
+            "4": {
+                "actions": [
+                    "Check",
+                    "Draw",
+                    "Call"
+                ],
+                "bid": 20,
+                "card_replaced": 1,
+                "won": false
+            },
+            "5": {
+                "actions": [
+                    "Open",
+                    "Draw",
+                    "Raise"
+                ],
+                "bid": 104,
+                "card_replaced": 1,
+                "won": false
+            },
+            "6": {
+                "actions": [
+                    "Open",
+                    "Draw",
+                    "Check",
+                    "Fold"
+                ],
+                "bid": 17,
+                "card_replaced": 1,
+                "won": false
+            },
+            "7": {
+                "actions": [
+                    "Check",
+                    "Draw",
+                    "Check"
+                ],
+                "bid": 20,
+                "card_replaced": 1,
+                "won": false
+            },
+            "8": {
+                "actions": [
+                    "Check",
+                    "Draw",
+                    "Check"
+                ],
+                "bid": 10,
+                "card_replaced": 1,
+                "won": false
+            },
+            "9": {
+                "actions": [
+                    "Check",
+                    "Draw",
+                    "Check",
+                    "Call"
+                ],
+                "bid": 0,
+                "card_replaced": 1,
+                "won": false
+            },
+            "10": {
+                "actions": [
+                    "Fold",
+                    "Draw",
+                    "All-in"
+                ],
+                "bid": 10,
+                "card_replaced": 1,
+                "won": false
+            },
+            "11": {
+                "actions": [
+                    "Draw"
+                ],
+                "bid": 0,
+                "card_replaced": 1,
+                "won": false
+            },
+            "12": {
+                "actions": [],
+                "bid": 0,
+                "card_replaced": 0,
+                "won": false
+            },
+            "13": {
+                "actions": [],
+                "bid": 0,
+                "card_replaced": 0,
+                "won": false
+            },
+            "14": {
+                "actions": [],
+                "bid": 0,
+                "card_replaced": 0,
+                "won": false
+            }
+        }
+    }
+}

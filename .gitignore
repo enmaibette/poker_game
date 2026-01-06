@@ -1,3 +1,5 @@
+# this agent should not be tracked
+/client 
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
