@@ -99,7 +99,6 @@ def queryOpenAction(_minimumPotAfterOpen, _playersCurrentBet, _playersRemainingC
 '''
 def queryCallRaiseAction(_maximumBet, _minimumAmountToRaiseTo, _playersCurrentBet, _playersRemainingChips):
     print("Player requested to choose a call/raise action.")
-    print("queryCallRaiseAction", CURRENT_HAND)
 
     # handcards > straight -> all in 
     # handcards >= 2 pair -> raise or call (randomness)
@@ -169,7 +168,6 @@ def card_value(rank):
     ROYAL_FLUSH = 10
     '''
 def identify_cards_in_hand(hand: list[str]):
-    print('identifyHand', hand)
     ranks = [card[0] for card in hand]
     suits = [card[-1] for card in hand]
     value_ranks = [card_value(rank) for rank in ranks]
@@ -234,7 +232,6 @@ def cards_to_throw_calc(cards_to_keep, hand):
 
 def queryCardsToThrow(_hand):
     print("Requested information about what cards to throw")
-    print(_hand)
     type_of_hand = identify_hand(_hand)
     cards_to_keep = []
     ranks, suits, value_ranks = identify_cards_in_hand(_hand)
@@ -289,8 +286,6 @@ def queryCardsToThrow(_hand):
 
 
     cards_to_throw = cards_to_throw_calc(cards_to_keep, _hand)
-
-    print("Cards to throw: ",  ' '.join(cards_to_throw))
 
     return ' '.join(cards_to_throw)
 # InfoFunction:
