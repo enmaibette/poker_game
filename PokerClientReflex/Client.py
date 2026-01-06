@@ -108,35 +108,52 @@ def queryCallRaiseAction(_maximumBet, _minimumAmountToRaiseTo, _playersCurrentBe
     if type_of_hand.value >= TypeOfHand.STRAIGHT.value:
         return ClientBase.BettingAnswer.ACTION_ALLIN
     elif type_of_hand.value >= TypeOfHand.TWO_PAIR.value:
-        action_choice = random.choices([ClientBase.BettingAnswer.ACTION_RAISE, ClientBase.BettingAnswer.ACTION_CALL], weights=[0.6, 0.4], k=1)[0]
+        action_choice = random.choices([ClientBase.BettingAnswer.ACTION_RAISE, ClientBase.BettingAnswer.ACTION_ALLIN], weights=[0.6, 0.4], k=1)[0]
         if _playersCurrentBet + _playersRemainingChips > _minimumAmountToRaiseTo:
             amount_that_can_be_raised = _playersCurrentBet + _playersRemainingChips - _minimumAmountToRaiseTo
             at_least_raise = 10 if amount_that_can_be_raised > 10 else 0
             if at_least_raise == 0:
-                return ClientBase.BettingAnswer.ACTION_CALL
+                return ClientBase.BettingAnswer.ACTION_ALLIN
             safe_raise = amount_that_can_be_raised - 40 if amount_that_can_be_raised > 40 else at_least_raise
             if action_choice == ClientBase.BettingAnswer.ACTION_RAISE:
                 return ClientBase.BettingAnswer.ACTION_RAISE, (random.randint(0, safe_raise) + _minimumAmountToRaiseTo)
-            return ClientBase.BettingAnswer.ACTION_CALL
-        else: 
-            action_choice = random.choices([ClientBase.BettingAnswer.ACTION_FOLD, ClientBase.BettingAnswer.ACTION_ALLIN], weights=[0.8, 0.2], k=1)[0]
+            return ClientBase.BettingAnswer.ACTION_ALLIN
+        
+        else:
+            return ClientBase.BettingAnswer.ACTION_ALLIN
+    elif type_of_hand.value == TypeOfHand.ONE_PAIR.value:
+        action_choice = random.choices([ClientBase.BettingAnswer.ACTION_CALL, ClientBase.BettingAnswer.ACTION_FOLD, ClientBase.BettingAnswer.ACTION_ALLIN], weights=[0.8, 0.1, 0.1], k=1)[0]
+        if _playersCurrentBet + _playersRemainingChips > _minimumAmountToRaiseTo:
+            action_choice = random.choices([ClientBase.BettingAnswer.ACTION_FOLD, ClientBase.BettingAnswer.ACTION_CALL, ClientBase.BettingAnswer.ACTION_RAISE, ClientBase.BettingAnswer.ACTION_ALLIN], weights=[0.1, 0.6, 0.2, 0.1], k=1)[0]
+            amount_that_can_be_raised = _playersCurrentBet + _playersRemainingChips - _minimumAmountToRaiseTo
+            at_least_raise = 10 if amount_that_can_be_raised > 10 else 0
+            safe_raise = amount_that_can_be_raised - 40 if amount_that_can_be_raised > 40 else at_least_raise
+            if at_least_raise == 0:
+                action_choice = random.choices([ClientBase.BettingAnswer.ACTION_FOLD, ClientBase.BettingAnswer.ACTION_CALL, ClientBase.BettingAnswer.ACTION_ALLIN], weights=[0.1, 0.7, 0.2], k=1)[0]
+
+            if action_choice == ClientBase.BettingAnswer.ACTION_RAISE:
+                return ClientBase.BettingAnswer.ACTION_RAISE, (random.randint(0, safe_raise) + _minimumAmountToRaiseTo)
             return action_choice
+        if _playersCurrentBet + _playersRemainingChips < _minimumAmountToRaiseTo:
+            action_choice = random.choices([ClientBase.BettingAnswer.ACTION_FOLD, ClientBase.BettingAnswer.ACTION_ALLIN], weights=[0.7, 0.3], k=1)[0]
+
+        return action_choice
     else:
-        action_choice = random.choices([ClientBase.BettingAnswer.ACTION_FOLD, ClientBase.BettingAnswer.ACTION_ALLIN], weights=[0.8, 0.2], k=1)[0]
+        action_choice = random.choices([ClientBase.BettingAnswer.ACTION_FOLD, ClientBase.BettingAnswer.ACTION_ALLIN, ClientBase.BettingAnswer.ACTION_CALL], weights=[0.6, 0.1, 0.3], k=1)[0]
         if _playersCurrentBet + _playersRemainingChips > _minimumAmountToRaiseTo:
             action_choice = random.choices([ClientBase.BettingAnswer.ACTION_FOLD, ClientBase.BettingAnswer.ACTION_CALL, ClientBase.BettingAnswer.ACTION_RAISE, ClientBase.BettingAnswer.ACTION_ALLIN], weights=[0.6, 0.2, 0.1, 0.1], k=1)[0]
             amount_that_can_be_raised = _playersCurrentBet + _playersRemainingChips - _minimumAmountToRaiseTo
             at_least_raise = 10 if amount_that_can_be_raised > 10 else 0
-            if at_least_raise == 0:
-                return ClientBase.BettingAnswer.ACTION_CALL
             safe_raise = amount_that_can_be_raised - 40 if amount_that_can_be_raised > 40 else at_least_raise
+            if at_least_raise == 0:
+                    action_choice = random.choices([ClientBase.BettingAnswer.ACTION_FOLD, ClientBase.BettingAnswer.ACTION_CALL,ClientBase.BettingAnswer.ACTION_ALLIN], weights=[0.7, 0.2, 0.1], k=1)[0]
             if action_choice == ClientBase.BettingAnswer.ACTION_RAISE:
                 return ClientBase.BettingAnswer.ACTION_RAISE, (random.randint(0, safe_raise) + _minimumAmountToRaiseTo)
-            elif action_choice == ClientBase.BettingAnswer.ACTION_CALL:
-                return ClientBase.BettingAnswer.ACTION_CALL
-        if action_choice == ClientBase.BettingAnswer.ACTION_FOLD:
-            return ClientBase.BettingAnswer.ACTION_FOLD
-    return ClientBase.BettingAnswer.ACTION_ALLIN
+            return action_choice
+        if _playersCurrentBet + _playersRemainingChips < _minimumAmountToRaiseTo:
+            action_choice = random.choices([ClientBase.BettingAnswer.ACTION_FOLD, ClientBase.BettingAnswer.ACTION_ALLIN], weights=[0.7, 0.3], k=1)[0]
+
+    return action_choice
 
 
 def card_value(rank):
